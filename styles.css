@@ -722,3 +722,219 @@ body {
         padding: 16px 8px;
     }
 }
+/* Animierte Regentropfen für Aktuelle Tätigkeiten */
+
+/* Entferne die alten Bullet Points */
+.activities-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 16px;
+    height: 20px;
+    background: linear-gradient(145deg, #007aff, #5ac8fa);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    box-shadow: 
+        inset 2px 2px 4px rgba(255, 255, 255, 0.3),
+        0 2px 8px rgba(0, 122, 255, 0.3);
+    animation: rainDropFall 2s ease-in-out infinite;
+    animation-delay: calc(var(--delay, 0) * 0.3s);
+    transform-origin: center bottom;
+}
+
+/* Verschiedene Delays für jeden Listenpunkt */
+.activities-list li:nth-child(1)::before { --delay: 0; }
+.activities-list li:nth-child(2)::before { --delay: 1; }
+.activities-list li:nth-child(3)::before { --delay: 2; }
+.activities-list li:nth-child(4)::before { --delay: 3; }
+.activities-list li:nth-child(5)::before { --delay: 4; }
+.activities-list li:nth-child(6)::before { --delay: 5; }
+
+/* Haupt-Animation: Fallender Regentropfen mit Bounce */
+@keyframes rainDropFall {
+    0% {
+        transform: translateY(-10px) scale(0.8);
+        opacity: 0;
+        filter: blur(1px);
+    }
+    20% {
+        transform: translateY(-5px) scale(0.9);
+        opacity: 0.7;
+        filter: blur(0.5px);
+    }
+    40% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+    45% {
+        transform: translateY(0) scale(1.1);
+        box-shadow: 
+            inset 2px 2px 4px rgba(255, 255, 255, 0.5),
+            0 4px 12px rgba(0, 122, 255, 0.5),
+            0 0 20px rgba(90, 200, 250, 0.3);
+    }
+    60% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    80% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.9;
+    }
+}
+
+/* Zusätzlicher Glitzer-Effekt */
+.activities-list li::after {
+    content: '✨';
+    position: absolute;
+    left: 18px;
+    top: 0;
+    font-size: 10px;
+    opacity: 0;
+    animation: sparkle 3s ease-in-out infinite;
+    animation-delay: calc(var(--delay, 0) * 0.3s + 0.5s);
+}
+
+.activities-list li:nth-child(1)::after { --delay: 0; }
+.activities-list li:nth-child(2)::after { --delay: 1; }
+.activities-list li:nth-child(3)::after { --delay: 2; }
+.activities-list li:nth-child(4)::after { --delay: 3; }
+.activities-list li:nth-child(5)::after { --delay: 4; }
+.activities-list li:nth-child(6)::after { --delay: 5; }
+
+@keyframes sparkle {
+    0%, 90% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+    }
+    10% {
+        opacity: 1;
+        transform: scale(1) rotate(180deg);
+    }
+    20% {
+        opacity: 0;
+        transform: scale(0) rotate(360deg);
+    }
+}
+
+/* Hover-Effekt für extra Magie */
+.activities-list li:hover::before {
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-name: rainDropSplash;
+    box-shadow: 
+        inset 2px 2px 6px rgba(255, 255, 255, 0.6),
+        0 6px 20px rgba(0, 122, 255, 0.6),
+        0 0 30px rgba(90, 200, 250, 0.5);
+}
+
+@keyframes rainDropSplash {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+        border-radius: 50%;
+        background: radial-gradient(circle, #5ac8fa, #007aff);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Hover-Effekt für Glitzer */
+.activities-list li:hover::after {
+    animation: sparkleHover 0.6s ease-out;
+}
+
+@keyframes sparkleHover {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.5) rotate(180deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0) rotate(360deg);
+    }
+}
+
+/* Alternative: CSS-Regentropfen mit Wellen-Effekt */
+.activities-list.wave-drops li::before {
+    background: linear-gradient(135deg, #40c4ff, #0071e3, #5ac8fa);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    box-shadow: 
+        inset 1px 1px 3px rgba(255, 255, 255, 0.4),
+        0 3px 10px rgba(64, 196, 255, 0.4);
+    animation: waveDrops 3s ease-in-out infinite;
+}
+
+@keyframes waveDrops {
+    0%, 100% {
+        transform: scale(1) translateY(0);
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    }
+    25% {
+        transform: scale(1.1) translateY(-2px);
+        border-radius: 60% 60% 40% 40% / 70% 70% 30% 30%;
+        box-shadow: 
+            inset 1px 1px 3px rgba(255, 255, 255, 0.6),
+            0 5px 15px rgba(64, 196, 255, 0.6);
+    }
+    50% {
+        transform: scale(0.9) translateY(1px);
+        border-radius: 40% 40% 60% 60% / 50% 50% 50% 50%;
+    }
+    75% {
+        transform: scale(1.05) translateY(-1px);
+        border-radius: 55% 55% 45% 45% / 65% 65% 35% 35%;
+    }
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 834px) {
+    .activities-list li::before {
+        width: 14px;
+        height: 18px;
+        left: -2px;
+    }
+    
+    .activities-list li::after {
+        left: 16px;
+        font-size: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .activities-list li::before {
+        width: 12px;
+        height: 16px;
+        left: -4px;
+    }
+    
+    .activities-list li::after {
+        left: 14px;
+        font-size: 7px;
+    }
+}
+
+/* Optional: Reduzierte Animation für bessere Performance */
+@media (prefers-reduced-motion: reduce) {
+    .activities-list li::before,
+    .activities-list li::after {
+        animation: none;
+    }
+    
+    .activities-list li::before {
+        opacity: 0.9;
+        transform: scale(1);
+    }
+}
